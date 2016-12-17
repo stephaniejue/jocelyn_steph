@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get '/contacts' => 'contacts#index'
   post '/contacts/create' => 'contacts#create'
   get '/contacts/update' => 'contacts#update'
+  post '/contacts/update' => 'contacts#update'
   get '/contacts/destroy' => 'contacts#destroy'
 
   get '/user' => 'user#index'

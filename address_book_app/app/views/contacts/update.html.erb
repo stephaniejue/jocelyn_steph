@@ -1,2 +1,23 @@
-<h1>Contacts#update</h1>
-<p>Find me in app/views/contacts/update.html.erb</p>
+<h1>Update contact information</h1>
+
+Enter contact's family name:
+</br>
+</br>
+<form action="/contacts/update" method="GET">
+  <input type="text" name="search_family_name" placeholder="Search Family name"/>
+  <input type="submit" value="submit"/>
+</form>
+
+</br>
+</br>
+
+Update contact information:
+</br>
+</br>
+<form action="/contacts/update" method="POST">
+  <input type="text" name="given_name" value="<%= @given_name %>"/></br></br>
+  <input type="text" name="family_name" value="<%= @family_name %>"/></br></br>
+  <input type="text" name="email" value="<%= @email %>"/></br></br>
+  <input type="text" name="address" value="<%= @address %>"/></br></br>
+  <input type="submit" value="update"/>
+</form>

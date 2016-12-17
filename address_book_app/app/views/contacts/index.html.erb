@@ -1,2 +1,20 @@
-<h1>Contacts#index</h1>
-<p>Find me in app/views/contacts/index.html.erb</p>
+<h1>All Contacts</h1>
+<table>
+  <tr>
+    <th>Given Name</th>
+    <th>Family Name</th>
+    <th>Email</th>
+    <th>Address</th>
+  </tr>
+  <% @contacts.each do |contact| %>
+  <tr>
+    <td><%= contact.given_name %></td>
+    <td><%= contact.family_name %></td>
+    <td><%= contact.email %></td>
+    <td><%= contact.address %></td>
+    <td><%= %></td>
+  </tr>
+<% end %>
+</table>
+
+<a href="/contacts/update"><button>Update</button></a>

@@ -25,7 +25,7 @@ context "I can add a contact" do
       fill_in 'address', with: '123 Baileys Shoe Lane'
       click_button 'submit'
     end
-    Then "I am taken to a page that confirms info" do
+    Then "I am taken to a page that displays info" do
       expect(page).to have_content("Gregg")
       expect(page).to have_content("Old")
       expect(page).to have_content("shoe@baileys.gov")
