@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
+  get '/phones/create' => 'phones#create'
+  post '/phones/create' => 'phones#create'
+
+  get '/phones/update'
+
+  get '/phones/delete'
+
   get '/contacts' => 'contacts#index'
+  get '/contacts/create' => 'contacts#create'
   post '/contacts/create' => 'contacts#create'
   get '/contacts/update' => 'contacts#update'
   post '/contacts/update' => 'contacts#update'
-  get '/contacts/destroy' => 'contacts#destroy'
-
-  get '/user' => 'user#index'
+  get '/contacts/delete' => 'contacts#delete'
+  post '/contacts/delete' => 'contacts#delete'
+  get '/contacts/sort' => 'contacts#sort'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'user#index'
+  root 'contacts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

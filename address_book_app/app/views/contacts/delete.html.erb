@@ -1,0 +1,31 @@
+<h2>Delete Contact</h2>
+
+Search by contact's family name:
+</br>
+</br>
+<form action="/contacts/delete" method="get">
+  <input type="text" name="search_family_name" placeholder="Search Family name"/>
+  <input type="submit" value="submit"/>
+</form>
+
+</br>
+<%= @given_name %></br>
+<%= @family_name %></br>
+<%= @email %></br>
+<%= @address %></br>
+</br>
+</br>
+Would you like to delete this user?
+</br>
+</br>
+<form action="/contacts/delete" method="post">
+  <input name="delete" type="radio" value="Yes" onclick="this.form.submit();"/>
+  <label for="age_child">Yes</label>
+  <input name="delete" type="radio" value="No" onclick="this.form.submit();"/>
+  <label for="age_adult">No</label>
+</form>
+
+<%= flash[:alert] %>
+
+</br>
+<a href="/contacts"><button>Address Book</button></a>

@@ -1,23 +1,32 @@
-<h1>Update contact information</h1>
+<h2>Update Contact</h2>
 
-Enter contact's family name:
+Search by contact's family name:
 </br>
 </br>
 <form action="/contacts/update" method="GET">
   <input type="text" name="search_family_name" placeholder="Search Family name"/>
-  <input type="submit" value="submit"/>
+  <input type="submit" value="Search"/>
 </form>
 
 </br>
 </br>
 
-Update contact information:
+Edit contact information:
 </br>
 </br>
 <form action="/contacts/update" method="POST">
+  Given Name:</br>
   <input type="text" name="given_name" value="<%= @given_name %>"/></br></br>
+  Family Name:</br>
   <input type="text" name="family_name" value="<%= @family_name %>"/></br></br>
+  Email Address:</br>
   <input type="text" name="email" value="<%= @email %>"/></br></br>
+  Home Address:</br>
   <input type="text" name="address" value="<%= @address %>"/></br></br>
-  <input type="submit" value="update"/>
+  <input type="submit" value="Update"/>
 </form>
+
+<%= flash[:alert] %>
+
+</br>
+<a href="/contacts"><button>Address Book</button></a>

@@ -1,20 +1,31 @@
-<h1>All Contacts</h1>
+<h1>Address Book</h1>
 <table>
   <tr>
+    <th>Contact id</th>
     <th>Given Name</th>
     <th>Family Name</th>
     <th>Email</th>
     <th>Address</th>
+    <th>Phones</th>
   </tr>
   <% @contacts.each do |contact| %>
   <tr>
+    <td><%= contact.id %></td>
     <td><%= contact.given_name %></td>
     <td><%= contact.family_name %></td>
     <td><%= contact.email %></td>
     <td><%= contact.address %></td>
+    <td><% contact.phones.each do |phone| %>
+      <%="#{phone.number} (#{phone.description})"%>
+      <% end %>
+    </td>
     <td><%= %></td>
   </tr>
 <% end %>
 </table>
-
+</br>
+<a href="/contacts/sort"><button>Sort</button></a>
+<a href="/contacts/create"><button>Create</button></a>
 <a href="/contacts/update"><button>Update</button></a>
+<a href="/contacts/delete"><button>Delete</button></a>
+<a href="/phones/create"><button>Add Phone</button></a>

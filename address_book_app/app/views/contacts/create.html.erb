@@ -1,2 +1,21 @@
-<h1>Contacts#create</h1>
-<p>Find me in app/views/contacts/create.html.erb</p>
+<h2>Create Contact</h2>
+
+Enter contact information:
+</br>
+</br>
+<form action= "/contacts/create" method="post">
+  Given Name:</br>
+  <input type="text" name="given_name" placeholder="Given name"/></br></br>
+  Family Name:</br>
+  <input type="text" name="family_name" placeholder="Family name"/></br></br>
+  Email Address:</br>
+  <input type="text" name="email" placeholder="Email address"/></br></br>
+  Home Address:</br>
+  <input type="text" name="address" placeholder="Home address"/></br></br>
+  <input type="submit" value="submit"/>
+</form>
+
+<%= flash[:alert] %>
+
+</br>
+<a href="/contacts"><button>Address Book</button></a>

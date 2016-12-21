@@ -6,30 +6,22 @@ RSpec.feature "LandingPages", type: :feature do
       Given "I'm on localhost:3000" do
         visit "/"
       end
-      Then "I should see a welcome" do
-        expect(page).to have_content("Welcome")
+      Then "I should see a 'Address Book'" do
+        expect(page).to have_content("Address Book")
       end
-    end
-  end
-end
+      And "I should see a table with contact information" do
+        expect(page).to have_content("Given Name")
+        expect(page).to have_content("Family Name")
+        expect(page).to have_content("Email")
+        expect(page).to have_content("Address")
+      end
+      And "I should see buttons that allow me to sort, create, update, and delete" do
+        expect(page).to have_content("Sort")
+        expect(page).to have_content("Create")
+        expect(page).to have_content("Update")
+        expect(page).to have_content("Delete")
+      end
+    end #end of steps
+  end #end of context
 
-context "I can add a contact" do
-  Steps "Going to the landing page" do
-    Given "I'm on localhost:3000" do
-      visit "/"
-    end
-    Then "I can fill in contact info" do
-      fill_in 'given_name', with: 'Gregg'
-      fill_in 'family_name', with: 'Old'
-      fill_in 'email', with: 'shoe@baileys.gov'
-      fill_in 'address', with: '123 Baileys Shoe Lane'
-      click_button 'submit'
-    end
-    Then "I am taken to a page that displays info" do
-      expect(page).to have_content("Gregg")
-      expect(page).to have_content("Old")
-      expect(page).to have_content("shoe@baileys.gov")
-      expect(page).to have_content("123 Baileys Shoe Lane")
-    end
-  end
-end
+end #end of rspec feature
