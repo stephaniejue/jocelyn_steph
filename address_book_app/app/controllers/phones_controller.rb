@@ -1,4 +1,8 @@
 class PhonesController < ApplicationController
+  def index
+    cookies.delete :user_id
+    @phones = Phone.all
+  end
 
   def create
     if !params[:search_family_name].nil?
@@ -10,7 +14,7 @@ class PhonesController < ApplicationController
       end
     end
 
-    if !params[:number].nil? && !params[:number].strip.empty? && !params[:description].nil? && !params[:description].strip.empty?
+    if !params[:number].blank? && !params[:description].blank?
       @phone = Phone.new
       @phone.number = params[:number]
       @phone.description = params[:description]

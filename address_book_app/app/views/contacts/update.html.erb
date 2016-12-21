@@ -1,32 +1,30 @@
+<%= stylesheet_link_tag "application", media: "all" %>
+<%= javascript_include_tag "application" %>
+
 <h2>Update Contact</h2>
 
-Search by contact's family name:
-</br>
-</br>
+<h4><%= flash[:alert] %></h4>
 <form action="/contacts/update" method="GET">
   <input type="text" name="search_family_name" placeholder="Search Family name"/>
   <input type="submit" value="Search"/>
 </form>
 
-</br>
-</br>
+<% if cookies[:user_id].present?%>
+  <h4>Edit contact information:</h4>
+  <form action="/contacts/update" method="POST">
+    Given Name:</br>
+    <input type="text" name="given_name" value="<%= @given_name %>"/></br></br>
+    Family Name:</br>
+    <input type="text" name="family_name" value="<%= @family_name %>"/></br></br>
+    Email Address:</br>
+    <input type="text" name="email" value="<%= @email %>"/></br></br>
+    Home Address:</br>
+    <input type="text" name="address" value="<%= @address %>"/></br></br>
+    <input type="submit" value="Update"/>
+  </form>
+<% end %>
 
-Edit contact information:
-</br>
-</br>
-<form action="/contacts/update" method="POST">
-  Given Name:</br>
-  <input type="text" name="given_name" value="<%= @given_name %>"/></br></br>
-  Family Name:</br>
-  <input type="text" name="family_name" value="<%= @family_name %>"/></br></br>
-  Email Address:</br>
-  <input type="text" name="email" value="<%= @email %>"/></br></br>
-  Home Address:</br>
-  <input type="text" name="address" value="<%= @address %>"/></br></br>
-  <input type="submit" value="Update"/>
-</form>
 
-<%= flash[:alert] %>
 
 </br>
 <a href="/contacts"><button>Address Book</button></a>

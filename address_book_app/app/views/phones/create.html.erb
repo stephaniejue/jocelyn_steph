@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag "application", media: "all" %>
+<%= javascript_include_tag "application" %>
+
 <h2>Create Phone</h2>
 
 Search by contact's family name:
@@ -26,4 +29,5 @@ Add phone number for <%= @given_name %> <%= @family_name %>:
 <%= flash[:alert] %>
 
 </br>
+<a href="/phones"><button>Phone List</button></a>
 <a href="/contacts"><button>Address Book</button></a>

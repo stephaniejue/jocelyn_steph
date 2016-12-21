@@ -1,4 +1,14 @@
+<%= stylesheet_link_tag "application", media: "all" %>
+<%= javascript_include_tag "application" %>
+
 <h1>Address Book</h1>
+
+<!-- <form action="/contacts" method="get">
+  <label for="contacts_family_name">Family Name</label>
+  <input id="contacts_family_name" name="contacts[family_name]" type="text" placeholder="Enter Family Name">
+  <button>Find Contact</button>
+</form> -->
+
 <table>
   <tr>
     <th>Contact id</th>
@@ -19,13 +29,21 @@
       <%="#{phone.number} (#{phone.description})"%>
       <% end %>
     </td>
-    <td><%= %></td>
   </tr>
 <% end %>
 </table>
 </br>
-<a href="/contacts/sort"><button>Sort</button></a>
+Sort Contacts:
+</br></br>
+<a href="/contacts/sort"><button>By Family Name</button></a>
+</br></br>
+Contacts:
+</br></br>
 <a href="/contacts/create"><button>Create</button></a>
 <a href="/contacts/update"><button>Update</button></a>
 <a href="/contacts/delete"><button>Delete</button></a>
-<a href="/phones/create"><button>Add Phone</button></a>
+</br></br>
+Phones:
+</br></br>
+<a href="/phones"><button>Phone List</button></a>
+<a href="/phones/create"><button>Add Number</button></a>

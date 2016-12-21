@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/phones' => 'phones#index'
   get '/phones/create' => 'phones#create'
   post '/phones/create' => 'phones#create'
 

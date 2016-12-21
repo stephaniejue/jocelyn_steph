@@ -6,6 +6,8 @@ class ContactsController < ApplicationController
   def index
     cookies.delete :user_id
     @contacts = Contact.all
+    # @contacts = Contact.where(params[:contacts])
+    # render('contacts/index.html.erb')
   end
 
   def sort
@@ -14,21 +16,23 @@ class ContactsController < ApplicationController
   end
 
   def create
-    if !params[:given_name].nil? && !params[:given_name].strip.empty? && !params[:family_name].nil? && !params[:family_name].strip.empty? && !params[:email].nil? && !params[:address].nil?
-      @contact = Contact.new
-      @contact.given_name = params[:given_name]
-      @contact.family_name = params[:family_name]
-      @contact.email = params[:email]
-      @contact.address = params[:address]
-      if @contact.save
-        redirect_to "/contacts"
+    if !params[:given_name].nil? && !params[:family_name].nil? && !params[:email].nil? && !params[:address].nil?
+      if !params[:given_name].blank? && !params[:family_name].blank? && !params[:email].blank? && !params[:address].blank?
+        @contact = Contact.new
+        @contact.given_name = params[:given_name]
+        @contact.family_name = params[:family_name]
+        @contact.email = params[:email]
+        @contact.address = params[:address]
+        if @contact.save
+          redirect_to "/contacts"
+        else
+          redirect_to "/contacts/create"
+        end
       else
-        redirect_to "/contacts/create"
+        flash.now[:alert] = "All fields are required."
       end
-    elsif (params[:given_name].nil? || !params[:given_name].strip.empty? || !params[:family_name].nil? || !params[:family_name].strip.empty?)
-      flash.now[:alert] = "Contact must have a given name and family name!"
     else
-      flash.now[:alert] = "Please fill out contact info."
+      flash.now[:alert] = "Enter contact information:"
     end
   end
 
@@ -41,21 +45,35 @@ class ContactsController < ApplicationController
         @family_name = @contact.family_name
         @email = @contact.email
         @address = @contact.address
+      else
+        flash.now[:alert] = "Contact not found. Please retry."
       end
+    else
+      flash.now[:alert] = "Search by contact's family name:"
     end
 
-    if !cookies[:user_id].nil? && !params[:given_name].nil? && !params[:family_name].nil? && !params[:email].nil? && !params[:address].nil? && !params[:given_name].strip.empty? && !params[:family_name].strip.empty?
-      @contact = Contact.find(cookies[:user_id])
-      @contact.given_name = params[:given_name]
-      @contact.family_name = params[:family_name]
-      @contact.email = params[:email]
-      @contact.address = params[:address]
-      if @contact.save
-        cookies.delete :user_id
-        redirect_to "/contacts"
-        flash.now[:alert] = "Contact info saved!"
-      else
-        redirect_to "/contacts/update"
+    if !cookies[:user_id].nil?
+      if !params[:given_name].blank? && !params[:family_name].blank? && !params[:email].blank? && !params[:address].blank?
+        @contact = Contact.find(cookies[:user_id])
+        @contact.given_name = params[:given_name]
+        @contact.family_name = params[:family_name]
+        @contact.email = params[:email]
+        @contact.address = params[:address]
+        if @contact.save
+          cookies.delete :user_id
+          redirect_to "/contacts"
+          flash.now[:alert] = "Contact info saved!"
+        else
+          redirect_to "/contacts/update"
+        end
+      #if any of the fields are blank, repopulate with contact's information
+      elsif params[:given_name].blank? || params[:family_name].blank? || params[:email].blank? || params[:address].blank?
+        @contact = Contact.find(cookies[:user_id])
+        @given_name = @contact.given_name
+        @family_name = @contact.family_name
+        @email = @contact.email
+        @address = @contact.address
+        flash.now[:alert] = "All fields are required."
       end
     end
   end
@@ -69,7 +87,11 @@ class ContactsController < ApplicationController
         @family_name = @contact.family_name
         @email = @contact.email
         @address = @contact.address
+      else
+        flash.now[:alert] = "Contact not found. Please retry."
       end #inner if end
+    else
+      flash.now[:alert] = "Search by contact's family name:"
     end #first if end
 
     if !cookies[:user_id].nil? && (params[:delete] == "Yes")

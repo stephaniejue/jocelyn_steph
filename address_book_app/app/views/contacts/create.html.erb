@@ -1,8 +1,9 @@
+<%= stylesheet_link_tag "application", media: "all" %>
+<%= javascript_include_tag "application" %>
+
 <h2>Create Contact</h2>
 
-Enter contact information:
-</br>
-</br>
+<h4><%= flash[:alert] %></h4>
 <form action= "/contacts/create" method="post">
   Given Name:</br>
   <input type="text" name="given_name" placeholder="Given name"/></br></br>
@@ -15,7 +16,7 @@ Enter contact information:
   <input type="submit" value="submit"/>
 </form>
 
-<%= flash[:alert] %>
 
-</br>
+
+</br></br>
 <a href="/contacts"><button>Address Book</button></a>
