@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/contacts/delete' => 'contacts#delete'
   post '/contacts/delete' => 'contacts#delete'
   get '/contacts/sort' => 'contacts#sort'
+  get '/contacts/find' => 'contacts#find'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

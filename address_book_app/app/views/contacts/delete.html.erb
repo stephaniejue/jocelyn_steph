@@ -5,8 +5,9 @@
 
 <h4><%= flash[:alert] %></h4>
 <form action="/contacts/delete" method="get">
-  <input type="text" name="search_family_name" placeholder="Search Family name"/>
-  <input type="submit" value="submit"/>
+  <label for="search_family_name">Find Contact: </label>
+  <input id="search_family_name" type="text" name="search_family_name" placeholder="Enter Family name"/>
+  <input type="submit" value="Search"/>
 </form>
 
 <% if @given_name.present?%>

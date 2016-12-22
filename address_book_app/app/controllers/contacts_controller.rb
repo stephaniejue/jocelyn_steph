@@ -6,8 +6,11 @@ class ContactsController < ApplicationController
   def index
     cookies.delete :user_id
     @contacts = Contact.all
-    # @contacts = Contact.where(params[:contacts])
-    # render('contacts/index.html.erb')
+  end
+
+  def find
+    @contacts = Contact.where(family_name: params[:family_name])
+    render 'index.html.erb'
   end
 
   def sort
