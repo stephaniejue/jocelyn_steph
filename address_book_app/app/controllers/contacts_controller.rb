@@ -40,8 +40,8 @@ class ContactsController < ApplicationController
   end
 
   def update
-    if !params[:search_family_name].nil?
-      @contact = Contact.find_by_family_name(params[:search_family_name])
+    if !params[:search_given_name].blank? && !params[:search_family_name].blank?
+      @contact = Contact.find_by(given_name: params[:search_given_name], family_name: params[:search_family_name])
       if !@contact.nil?
         cookies[:user_id] = @contact.id
         @given_name = @contact.given_name
@@ -52,7 +52,7 @@ class ContactsController < ApplicationController
         flash.now[:alert] = "Contact not found. Please retry."
       end
     else
-      flash.now[:alert] = "Search by contact's family name:"
+      flash.now[:alert] = "Search for contact:"
     end
 
     if !cookies[:user_id].nil?
@@ -82,8 +82,8 @@ class ContactsController < ApplicationController
   end
 
   def delete
-    if !params[:search_family_name].nil?
-      @contact = Contact.find_by_family_name(params[:search_family_name])
+    if !params[:search_given_name].nil? && !params[:search_family_name].nil?
+      @contact = Contact.find_by(given_name: params[:search_given_name], family_name: params[:search_family_name])
       if !@contact.nil?
         cookies[:user_id] = @contact.id
         @given_name = @contact.given_name
@@ -94,7 +94,7 @@ class ContactsController < ApplicationController
         flash.now[:alert] = "Contact not found. Please retry."
       end #inner if end
     else
-      flash.now[:alert] = "Search by contact's family name:"
+      flash.now[:alert] = "Search for contact:"
     end #first if end
 
     if !cookies[:user_id].nil? && (params[:delete] == "Yes")

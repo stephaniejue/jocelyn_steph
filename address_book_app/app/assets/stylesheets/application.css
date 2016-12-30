@@ -14,15 +14,40 @@
  *= require_self
  */
 
+ body {
+   margin: 20px;
+   background-color: #9ca6a3;
+   font-family: 'Source Sans Pro', sans-serif;
+ }
+
+ button, input {
+   font-family: 'Droid Sans', sans-serif;
+   font-size: 14px;
+   padding: 6px;
+ }
+
  table {
-     border-collapse: collapse;
+   border-collapse: collapse;
  }
 
  th, td {
-     border: 1px solid #ddd;
-     padding: 6px;
+   border: 1px solid #ddd;
+   padding: 8px;
+ }
+
+ th {
+   background-color: #5B6B67;
+   font-family: 'Droid Sans', sans-serif;
+   color: white;
+ }
+ td {
+   font-family: 'Droid Sans', sans-serif;
+   font-size: 14px;
  }
 
  tr:nth-child(even) {
    background-color: #f2f2f2;
+ }
+ tr:nth-child(odd) {
+   background-color: white;
  }

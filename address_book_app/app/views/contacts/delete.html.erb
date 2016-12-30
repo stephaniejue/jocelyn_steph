@@ -5,7 +5,9 @@
 
 <h4><%= flash[:alert] %></h4>
 <form action="/contacts/delete" method="get">
-  <label for="search_family_name">Find Contact: </label>
+  <label for="search_given_name">Given Name: </label>
+  <input id="search_given_name" type="text" name="search_given_name" placeholder="Enter Given name"/>
+  <label for="search_family_name">Family Name: </label>
   <input id="search_family_name" type="text" name="search_family_name" placeholder="Enter Family name"/>
   <input type="submit" value="Search"/>
 </form>
